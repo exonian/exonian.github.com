@@ -5,6 +5,14 @@ layout: base
 <div class="row">
     <div class="span4">
         <h2>Michael Blatherwick</h2>
+        <h3>This site:</h3>
+        <ul class="unstyled">
+            {% for page in site.pages %}
+                {% if page.title %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
 
         <h3>Contact:</h3>
         <ul class="unstyled">
