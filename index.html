@@ -7,10 +7,16 @@ layout: with_sidebar
         <a href="{{ post.url }}">
             {{ post.title }}
             <small>{{ post.date | date: "%d %B %Y" }}</small>
-            {{ forloop.counter }}
         </a>
     </h2>
 
-    {{ post.content }}
-    <hr />
+    {% if post.summary %}
+        {{ post.summary }}
+    {% else %}
+        {{ post.content|truncatewords:40 }}
+    {% endif %}
+
+    {% unless forloop.last %}
+        <hr />
+    {% endunless %}
 {% endfor %}
