@@ -1,24 +1,16 @@
 ---
-layout: base
+layout: with_sidebar
 ---
 
-<div class="row">
-    <div class="span4">
-        <div class="well">
-            <h2>Michael Blatherwick</h2>
-        </div>
-    </div>
-    <div class="span8">
-    {% for post in site.posts %}
-            <h2>
-                <a href="{{ post.url }}">
-                    {{ post.title }}
-                    <small>{{ post.date | date: "%d %B %Y" }}</small>
-                </a>
-            </h2>
+{% for post in site.posts %}
+    <h2>
+        <a href="{{ post.url }}">
+            {{ post.title }}
+            <small>{{ post.date | date: "%d %B %Y" }}</small>
+            {{ forloop.counter }}
+        </a>
+    </h2>
 
-            {{ post.content }}
-            <hr />
-        {% endfor %}
-    </div>
-</div>
+    {{ post.content }}
+    <hr />
+{% endfor %}
