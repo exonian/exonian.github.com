@@ -2,5 +2,6 @@ safe: true
 lsi: false
 pygments: true
 permalink: pretty
+auto: true
 
 name: "MichaelBlatherwick.co.uk"
