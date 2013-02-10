@@ -12,7 +12,7 @@ title: Blog
     </h2>
 
     {% if post.summary %}
-        {{ post.summary }}
+        {{ post.summary|markdownify }}
     {% elsif post.truncate %}
         {{ post.content|truncatewords:80 }}
     {% else %}
