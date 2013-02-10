@@ -3,19 +3,13 @@ body {
     padding-bottom: 40px;
 }
 
-.sidebar {
-}
-
-.sidebar h2 {
-
-}
-
-.sidebar h3 {
-    font-size: 20px;
+p,
+li {
+    font-size: 1.2em;
+    line-height: 1.7em;
 }
 
 .sidebar li {
-    font-size: 16px;
-    padding-bottom: 0.5em;
     padding-left: 1.5em;
+    padding-bottom: 0.5em;
 }
