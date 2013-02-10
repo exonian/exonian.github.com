@@ -13,8 +13,10 @@ title: Blog
 
     {% if post.summary %}
         {{ post.summary }}
-    {% else %}
+    {% elsif post.truncate %}
         {{ post.content|truncatewords:40 }}
+    {% else %}
+        {{ post.content }}
     {% endif %}
 
     {% unless forloop.last %}
