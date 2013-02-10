@@ -14,7 +14,7 @@ title: Blog
     {% if post.summary %}
         {{ post.summary }}
     {% elsif post.truncate %}
-        {{ post.content|truncatewords:40 }}
+        {{ post.content|truncatewords:80 }}
     {% else %}
         {{ post.content }}
     {% endif %}
