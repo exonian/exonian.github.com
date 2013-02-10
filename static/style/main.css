@@ -1,0 +1,21 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.sidebar {
+}
+
+.sidebar h2 {
+
+}
+
+.sidebar h3 {
+    font-size: 20px;
+}
+
+.sidebar li {
+    font-size: 16px;
+    padding-bottom: 0.5em;
+    padding-left: 1.5em;
+}
