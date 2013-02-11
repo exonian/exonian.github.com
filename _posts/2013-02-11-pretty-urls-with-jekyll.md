@@ -3,6 +3,7 @@ layout: post
 ---
 
 <p class="lead">tl;dr <code>permalink: pretty</code></p>
+<hr />
 
 I don't know how much technical stuff is going to make it onto this blog
 and I certainly don't intend to go into every detail of how the blog
