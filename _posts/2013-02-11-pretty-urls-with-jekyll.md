@@ -10,7 +10,7 @@ and I certainly don't intend to go into every detail of how the blog
 itself was constructed, but today at work I was talking to Ben about
 pretty urls in Jekyll.
 
-It was [Ben's website][benWeb] that inspired me to build this, and from
+It was [Ben's][ben] [website][benWeb] that inspired me to build this, and from
 which I got a few specific ideas, but he hadn't come across Jekyll's
 ability to generate 'pretty' urls (urls without a file extension at the
 end), so I thought I'd do a little post about it on here.  
@@ -33,5 +33,6 @@ You can even override the permalink of individual posts in the post's
 front-matter if you see fit.  All very cool, but the standard pretty
 urls work just fine for me right now.
 
+[ben]: http://twitter.com/benjaminbenben
 [benWeb]: http://benjaminbenben.com
 [permalinks]: https://github.com/mojombo/jekyll/wiki/Permalinks
