@@ -2,10 +2,12 @@
 layout: with_sidebar
 ---
 
-<a href="/">&larr;</a>
-<h1>{{ page.title }}
+<h1>
+    <a class="btn btn-home" href="/" title="Home">&larr;</a>
+    {{ page.title }}
     <small>{{ page.date | date: "%d %B %Y" }}</small>
 </h1>
 
 {{ content }}
 
+<a class="btn btn-home" href="/" title="Home">&larr;</a>
