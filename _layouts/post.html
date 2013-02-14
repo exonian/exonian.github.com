@@ -10,4 +10,6 @@ layout: with_sidebar
 
 {{ content }}
 
-<a class="btn btn-home" href="/" title="Home">&larr;</a>
+{% unless page.short_post %}
+    <a class="btn btn-home" href="/" title="Home">&larr;</a>
+{% endunless %}
