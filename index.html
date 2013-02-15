@@ -13,7 +13,7 @@ title: Blog
 
     {% if post.summary %}
         {{ post.summary|markdownify }}
-        <small><a href="{{ post.url }}">Read more</a></small>
+        <p><small><a href="{{ post.url }}">Read more</a></small></p>
     {% elsif post.truncate %}
         {{ post.content|truncatewords:80 }}
         <small><a href="{{ post.url }}">Read more</a></small>
