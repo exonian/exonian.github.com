@@ -1,5 +1,6 @@
 ---
 layout: post
+truncate: yes
 ---
 
 <p class="lead">tl;dr <code>permalink: pretty</code></p>
