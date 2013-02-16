@@ -13,3 +13,12 @@ layout: with_sidebar
 {% unless page.short_post %}
     <a class="btn btn-home" href="/" title="Home">&larr;</a>
 {% endunless %}
+
+{% if site.related_posts %}
+    <hr />
+    <ul class="clearboth">
+        {% for post in site.related_posts %}
+            <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }} <small>({{ post.date | date: "%d&nbsp;%B&nbsp;%Y" }})</small></a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
