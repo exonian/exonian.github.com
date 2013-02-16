@@ -19,3 +19,9 @@ li {
     margin-top: 0.2em;
     float: left;
 }
+
+.icon-twitter{
+    background: url('../img/bird_gray_16.png') no-repeat left center ;
+    padding-left: 18px;
+    margin-left: -18px;
+}
