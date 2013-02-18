@@ -8,10 +8,10 @@ truncate: yes
 
 I don't know how much technical stuff is going to make it onto this blog
 and I certainly don't intend to go into every detail of how the blog
-itself was constructed, but today at work I was talking to Ben about
+itself was constructed, but today at work I was talking to [Ben][ben] about
 pretty urls in Jekyll.
 
-It was [Ben's][ben] [website][benWeb] that inspired me to build this, and from
+It was [Ben's website][benWeb] that inspired me to build this, and from
 which I got a few specific ideas, but he hadn't come across Jekyll's
 ability to generate 'pretty' urls (urls without a file extension at the
 end), so I thought I'd do a little post about it on here.  
