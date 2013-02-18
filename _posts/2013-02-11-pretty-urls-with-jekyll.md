@@ -34,6 +34,6 @@ You can even override the permalink of individual posts in the post's
 front-matter if you see fit.  All very cool, but the standard pretty
 urls work just fine for me right now.
 
-[ben]: http://twitter.com/benjaminbenben
+[ben]: https://twitter.com/intent/user?screen_name=benjaminbenben "@benjaminbenben"
 [benWeb]: http://benjaminbenben.com
 [permalinks]: https://github.com/mojombo/jekyll/wiki/Permalinks
