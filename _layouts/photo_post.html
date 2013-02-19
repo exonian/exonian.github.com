@@ -8,4 +8,6 @@ layout: base_post
     <small>{{ page.date | date: "%d&nbsp;%B&nbsp;%Y" }}</small>
 </h1>
 
+<img src="{{ site.s3_photos }}{{ page.photo }}" alt="{{ page.alt }}" title="{{ page.title }}" />
+
 {{ content }}

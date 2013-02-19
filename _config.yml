@@ -5,3 +5,5 @@ permalink: pretty
 auto: true
 
 name: "MichaelBlatherwick.co.uk"
+s3_bucket: http://s3-eu-west-1.amazonaws.com/exonian/
+s3_photos: http://s3-eu-west-1.amazonaws.com/exonian/website_photos/
