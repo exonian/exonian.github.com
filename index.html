@@ -11,14 +11,18 @@ title: Blog
         </a>
     </h2>
 
-    {% if post.summary %}
-        {{ post.summary|markdownify }}
-        <p><small><a href="{{ post.url }}">Read more</a></small></p>
-    {% elsif post.truncate %}
-        {{ post.content|truncatewords:80 }}
-        <small><a href="{{ post.url }}">Read more</a></small>
+    {% if post.layout == 'photo_post' %}
+        <a href="{{ post.url }}"><img src="{{ site.s3_photos }}t_{{ post.photo }}" alt="{{ post.alt }}" title="{{ post.title }}" /></a>
     {% else %}
-        {{ post.content }}
+        {% if post.summary %}
+            {{ post.summary|markdownify }}
+            <p><small><a href="{{ post.url }}">Read more</a></small></p>
+        {% elsif post.truncate %}
+            {{ post.content|truncatewords:80 }}
+            <small><a href="{{ post.url }}">Read more</a></small>
+        {% else %}
+            {{ post.content }}
+        {% endif %}
     {% endif %}
 
     {% unless forloop.last %}
