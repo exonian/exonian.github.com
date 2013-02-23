@@ -1,0 +1,40 @@
+---
+layout: with_sidebar
+title: My card game
+get-category: my-game
+---
+
+<h2>{{ page.title }}</h2>
+<p class="lead">It doesn't have a name yet, but I'm developing a card game.</p>
+
+{% assign posts = site.categories[page.get-category] %}
+{% if posts  %}
+    <div class="well">
+        {% for post in site.categories[page.get-category] %}
+            <h2>
+                <a href="{{ post.url }}">
+                    {{ post.title }}
+                    <small>{{ post.date | date: "%d&nbsp;%B&nbsp;%Y" }}</small>
+                </a>
+            </h2>
+        
+            {% if post.layout == 'photo_post' %}
+                <a href="{{ post.url }}"><img src="{{ site.s3_photos }}t_{{ post.photo }}" alt="{{ post.alt }}" title="{{ post.title }}" /></a>
+            {% else %}
+                {% if post.summary %}
+                    {{ post.summary|markdownify }}
+                    <p><small><a href="{{ post.url }}">Read more</a></small></p>
+                {% elsif post.truncate %}
+                    {{ post.content|truncatewords:80 }}
+                    <small><a href="{{ post.url }}">Read more</a></small>
+                {% else %}
+                    {{ post.content }}
+                {% endif %}
+            {% endif %}
+        
+            {% unless forloop.last %}
+                <hr />
+            {% endunless %}
+        {% endfor %}
+    </div>
+{% endif %}
