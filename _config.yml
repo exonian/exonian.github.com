@@ -5,6 +5,8 @@ permalink: pretty
 paginate: 10
 auto: true
 
+exclude: ['bin', 'vendor', 'Gemfile', 'Gemfile.lock', 'Procfile', 'Rakefile', 'unicorn.rb', 'config.ru', 'README.md']
+
 name: "MichaelBlatherwick.co.uk"
 s3_bucket: http://s3-eu-west-1.amazonaws.com/exonian/
 s3_photos: http://s3-eu-west-1.amazonaws.com/exonian/website_photos/
