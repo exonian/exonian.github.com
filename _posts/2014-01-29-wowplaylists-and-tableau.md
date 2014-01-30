@@ -15,7 +15,7 @@ Below is the result of my first (really rather quick) effort at doing so:
 
 
 <div>
-  <script type='text/javascript' src='http://public.tableausoftware.com/javascripts/api/viz_v1.js'><!-- --></script>
+  <script type='text/javascript' src='http://public.tableausoftware.com/javascripts/api/viz_v1.js'> </script>
   <div class='tableauPlaceholder' style='width: 654px; height: 928px;'>
     <noscript><a href='#'><img alt='WOWPlaylists ' src='http:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;63&#47;63S8THFFB&#47;1_rss.png' style='border: none' /></a></noscript>
     <object class='tableauViz' width='654' height='928' style='display:none;'>
