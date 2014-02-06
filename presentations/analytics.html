@@ -1,0 +1,65 @@
+---
+layout: presentation
+title: Google Analytics (Actually using it)
+theme: beige
+---
+
+
+<section>
+    <section>
+        <h1>Google Analytics<small class="fragment"> (Actually using it)</small></h1>
+        <p class="fragment">(as more than an off-site hit counter)</p>
+    </section>
+
+    <section>
+        <ul>
+            <li>GA for page views</li>
+            <li class="fragment">GA for events</li>
+            <li class="fragment">Enter the "Measurement Protocol"...</li>
+            <li class="fragment">My quick implementation</li>
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>GA for page views</h1>
+    </section>
+    <section>
+        <h1>GA for page views</h1>
+        <h2>js fragment</h2>
+        <pre><code>
+    var _gaq=[['_setAccount','UA-25225352-3'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+        </code></pre>
+    </section>
+    <section>
+        <h1>GA for page views</h1>
+        <h2>custom variables</h2>
+        <pre><code>
+    _gaq.push(['_setCustomVar',
+        1, // slot 1
+        'User Type', // top-level name for user types
+        '{{ user.userprofile.get_user_type_display }}', // value of user type
+        2 // scope
+    ]);
+        </code></pre>
+    </section>
+    <section>
+        <h1>GA for page views</h1>
+        <h2>spoof page hits for ajaxy sites</h2>
+        <pre><code>
+    &lt;li&gt;&lt;a onclick="_gaq.push(['_trackPageview', '/home']);" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        </code></pre>
+    </section>
+    <section>
+        <h1>GA for page views</h1>
+        <ul>
+            <li class="fragment roll-in highlight-red">no good for downloads</li>
+            <li class="fragment roll-in highlight-red">no good for outgoing links</li>
+            <li class="fragment roll-in highlight-red">don't always *want* js</li>
+        </ul>
+    </section>
+</section>
