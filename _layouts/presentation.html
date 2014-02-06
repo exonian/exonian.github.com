@@ -7,7 +7,7 @@
 		<title>{{ page.title }}</title>
 
 		<link rel="stylesheet" href="/static/reveal/css/reveal.min.css">
-		<link rel="stylesheet" href="/static/reveal/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="/static/reveal/css/theme/{% if page.theme %}{{ page.theme }}{% else %}default{% endif %}.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="/static/reveal/lib/css/zenburn.css">
