@@ -8,6 +8,7 @@ theme: beige
 <section>
     <section>
         <h1>Google Analytics<small class="fragment"> (Actually using it)</small></h1>
+        <img src="http://24.media.tumblr.com/3607c65173b2eeb98ca56003f66a9d11/tumblr_mr930qWvzs1qz5nl8o1_500.gif" />
         <p class="fragment">(as more than an off-site hit counter)</p>
     </section>
 
@@ -17,8 +18,14 @@ theme: beige
             <li class="fragment">GA for events</li>
             <li class="fragment">Enter the "Measurement Protocol"...</li>
             <li class="fragment">My quick implementation</li>
+            <li class="fragment">Other cool stuff GA does these days</li>
         </ul>
     </section>
+</section>
+
+<section>
+    <img src="http://24.media.tumblr.com/3607c65173b2eeb98ca56003f66a9d11/tumblr_mr930qWvzs1qz5nl8o1_500.gif" />
+    <p>Another look at that gif</p>
 </section>
 
 <section>
@@ -58,8 +65,200 @@ theme: beige
         <h1>GA for page views</h1>
         <ul>
             <li class="fragment roll-in highlight-red">no good for downloads</li>
-            <li class="fragment roll-in highlight-red">no good for outgoing links</li>
             <li class="fragment roll-in highlight-red">don't always *want* js</li>
         </ul>
     </section>
+</section>
+
+
+<section>
+    <section>
+        <h1>GA for events</h1>
+    </section>
+    <section>
+        <h1>GA for events</h1>
+        <h2>Great for user interaction</h2>
+        <pre><code>
+    &lt;a href="#" onClick="_gaq.push(['_trackEvent', 'Videos', 'Play', 'Baby\'s First Birthday']);"&gt;Play&lt;/a&gt;
+        </code></pre>
+    </section>
+    <section>
+        <h1>GA for events</h1>
+        <h2>What we tried to use it for...</h2>
+        <ul>
+            <li class="fragment">User signups</li>
+            <li class="fragment">Content creation</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Aside about this narrative</h2>
+        <img class="fragment" src="http://upload.wikimedia.org/wikipedia/zh/3/3c/Casualty_credits_logo_-_s21.JPG" />
+    </section>
+    <section>
+        <h2>At first...</h2>
+        <img class="fragment" src="http://img.pandawhale.com/post-15882-Indiana-Jones-switching-idol-g-glxZ.gif" />
+    </section>
+    <section>
+        <h2>and then...</h2>
+        <img class="fragment" src="http://www.standoutessay.com/blog/wp-content/uploads/standoutessay.com/2011/10/its_fine.jpg" />
+    </section>
+    <section>
+        <h2>and then...</h2>
+        <img class="fragment" src="http://memeblender.com/wp-content/uploads/2012/01/i-have-no-idea-what-im-doing-dog-flying-helicopter.jpg" />
+    </section>
+</section>
+
+<section>
+    <section>
+        <p>wait
+            <span class="fragment">.</span>
+            <span class="fragment">.</span>
+            <span class="fragment">.</span>
+        </p>
+    </section>
+    <section>
+        <h1 class="fragment shrink">Why am I doing my BACKEND analytics on the FRONTEND!?</h1>
+        <h2 class="fragment">Because that's where the js snippet goes<span class="fragment">, idiot</span></h2>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>Enter the "Measurement Protocol"...</h1>
+        <blockquote class="fragment">The Google Analytics Measurement Protocol allows developers to make HTTP requests to send raw user interaction data directly to Google Analytics servers. This allows developers to measure how users interact with their business from almost any environment.</blockquote>
+    </section>
+    <section>
+        <p>HTTP requests</p>
+    </section>
+    <section>
+        <h4>HTTP requests</h4>
+    </section>
+    <section>
+        <h3>HTTP requests</h3>
+    </section>
+    <section>
+        <h2>HTTP requests</h2>
+    </section>
+    <section>
+        <h1>HTTP requests</h1>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>My quick implementation</h1>
+    </section>
+    <section>
+        <h2>Define some site-wide settings</h2>
+        <pre><code>
+    GA_ENDPOINT = 'http://www.google-analytics.com/collect'
+    GA_TRACKING_ID = 'UA-25225352-3'
+    GA_HIT_TYPES = ['pageview', 'appview', 'event', 'transaction',
+                    'item', 'social', 'exception', 'timing']
+        </code></pre>
+    </section>
+    <section>
+        <h2>Make a generic wrapper function</h2>
+        <h3 class="fragment">Include what we'll always need</h3>
+        <div class="fragment">
+        <p><em>v</em>, <em>t</em>, <em>tid</em> and <em>cid</em> are always required</p>
+        <pre><code data-trim>
+def track_event(data):
+    if not 'cid' in data:
+        raise MissingParameterError('Tracking requires a value for "cid" (client ID)')
+    try:
+        t = data['t']
+    except KeyError:
+        raise MissingParameterError('Tracking requires a value for "t" (hit type)')
+    else:
+        if not t in settings.GA_HIT_TYPES:
+            raise InvalidParameterError(
+                'Hit type must be one of: "{}"'.format(', '.join(settings.GA_HIT_TYPES))
+            )
+
+    endpoint = settings.GA_ENDPOINT
+    payload = {
+        'v': 1,
+        'tid': settings.GA_TRACKING_ID,
+    }
+    payload.update(**data)
+
+    response = requests.post(endpoint, data=urllib.urlencode(payload))
+    return response
+        </code></pre>
+        </div>
+    </section>
+    <section>
+        <h2>Make a more specific wrapper function</h2>
+        <h3 class="fragment">Add the constantly dynamic,<br />dynamically constant stuff(TM) </h3>
+        <div class="fragment">
+        <p>These variables change, but how we get them is largely constant</p>
+        <pre><code data-trim>
+def track_user_event(user, request, data, t='event'):
+    try:
+        data = dict(data)
+    except ValueError:
+        raise InvalidParameterError(
+            'Data must be a dict, or be able to be turned into one'
+        )
+
+    full_data = {
+        'cid': user.pk,
+        't': t,
+        'cd1': user.userprofile.get_user_type_display(),
+        'cd2': user.userprofile.group_names,
+        'cm1': (timezone.now() - user.date_joined).days,
+    }
+    if request:
+        full_data.update(dh=request.get_host())
+    full_data.update(**data)
+    return track_event(full_data)
+        </code></pre>
+        </div>
+    </section>
+    <section>
+        <h2>Using it in a view</h2>
+        <div class="fragment">
+        <pre><code data-trim>
+    def form_valid(self, form):
+        response = super(EndorseSomeoneView, self).form_valid(form)
+        utils.track_user_event(self.request.user, self.request, {
+            'ec': 'Activities',
+            'ea': 'New Endorsement',
+        })
+        return response
+        </code></pre>
+        </div>
+        <h3 class="fragment">Disconcertingly, it's as simple as that</h3>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>Other cool stuff GA does these days</h1>
+        <ul>
+            <li class="fragment">lots of platforms, via SDKs and whatnot</li>
+            <li class="fragment">all sorts of hit types and parameters</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Event types</h2>
+        <ul>
+            <li>pageview</li>
+            <li>appview</li>
+            <li>event</li>
+            <li>transaction</li>
+            <li>item</li>
+            <li>social</li>
+            <li>exception</li>
+            <li>timing</li>
+        </ul>
+    </section>
+    <section>
+        <h2><a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters">Each of these has relevant params</a></h2>
+    </section>
+</section>
+
+<section>
+    <img src="https://i.chzbgr.com/maxW500/7946973184/h88A25B54/" />
 </section>
