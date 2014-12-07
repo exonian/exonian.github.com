@@ -14,14 +14,11 @@ $(function() {
         lines += line;
     }
 
-    // $pre.typed({
-        // strings: [lines],
-        // typeSpeed: -100000,
-        // callback: make_ben
-    // });
-
-    $pre.html(lines);
-    make_ben();
+    $pre.typed({
+        strings: [lines],
+        typeSpeed: -100000,
+        callback: make_ben
+    });
 
     function make_ben() {
         var char_coords = []
