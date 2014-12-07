@@ -14,11 +14,14 @@ $(function() {
         lines += line;
     }
 
-    $pre.typed({
-        strings: [lines],
-        typeSpeed: -100000,
-        callback: make_ben
-    });
+    // $pre.typed({
+        // strings: [lines],
+        // typeSpeed: -100000,
+        // callback: make_ben
+    // });
+
+    $pre.html(lines);
+    make_ben();
 
     function make_ben() {
         var char_coords = []
@@ -28,18 +31,31 @@ $(function() {
             }
         }
         order = shuffle(char_coords)
-        for (var i = 0; i < order.length; i++) {
+        var current_string=$pre.html();
+        var new_string;
+        var per_delay = 1000;
+        var easing = 1;
+        for (var i = 0, delay_time = per_delay; i < order.length; i++) {
             var x = order[i][0];
             var y = order[i][1];
             var index = (y*(width+1))+x; // account for newline chars by adding 1 to width
-            var current_string=$pre.html();
             if (current_string.charAt(index) == '\n') {
                 continue;
             }
             var new_char = ben_ascii[y].charAt(x);
             var new_string = current_string.substr(0, index) + new_char + current_string.substr(index+new_char.length);
-            $pre.html(new_string);
+            setTimeout((function(new_string) {
+                return function() {
+                    replace_string(new_string);
+                };
+            })(new_string), delay_time);
+            var current_string = new_string;
+            var delay_time = delay_time + per_delay;
         }
+    }
+
+    function replace_string(new_string) {
+        $pre.html(new_string);
     }
 
     function make_line(benness) {
