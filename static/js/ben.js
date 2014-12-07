@@ -5,9 +5,6 @@ $(function() {
     console.log('Height = ' + height);
     console.log('Width = ' + width);
 
-    var bensum = loremBensum({wordLimit: 400}).split(' ');
-    var ipsum = loremIpsum.split(' ');
-
     var lines = '';
     var line_number = 1;
     while (line_number <= height) {
