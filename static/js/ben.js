@@ -7,12 +7,18 @@ $(function() {
 
     var bensum = loremBensum({wordLimit: 400}).split(' ');
 
+    var lines = '';
     var line_number = 1;
     while (line_number <= height) {
         line_number++;
         line = make_line();
-        $pre.append(line);
+        lines += line;
     }
+
+    $pre.typed({
+        strings: [lines],
+        typeSpeed: -100000,
+    });
 
     function make_line() {
         var line = '';
