@@ -50,7 +50,7 @@ $(function() {
                 };
             })(new_string), delay_time);
             var current_string = new_string;
-            var delay_time = delay_time + per_delay;
+            var delay_time = delay_time + (per_delay / Math.pow((i+1), easing));
         }
     }
 
