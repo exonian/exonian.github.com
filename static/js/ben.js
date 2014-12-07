@@ -31,7 +31,7 @@ $(function() {
         var current_string=$pre.html();
         var new_string;
         var per_delay = 1000;
-        var easing = 1;
+        var easing = 0.8;
         for (var i = 0, delay_time = per_delay; i < order.length; i++) {
             var x = order[i][0];
             var y = order[i][1];
