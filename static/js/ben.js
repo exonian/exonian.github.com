@@ -17,7 +17,12 @@ $(function() {
     $pre.typed({
         strings: [lines],
         typeSpeed: -100000,
+        callback: make_ben
     });
+
+    function make_ben() {
+        console.log("Make Ben now");
+    }
 
     function make_line(benness) {
         var line = '';
@@ -51,10 +56,6 @@ $(function() {
     function get_next_bensum_word() {
         return bensum[Math.floor(Math.random() * bensum.length)];
     }
-
-    // $.each(ben_ascii,  function( i,v ) {
-        // $pre.append(v + '\n');
-    // });
 });
 
 
