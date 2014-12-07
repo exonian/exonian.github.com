@@ -6,12 +6,14 @@ $(function() {
     console.log('Width = ' + width);
 
     var bensum = loremBensum({wordLimit: 400}).split(' ');
+    var ipsum = loremIpsum.split(' ');
 
     var lines = '';
     var line_number = 1;
     while (line_number <= height) {
         line_number++;
-        line = make_line();
+        var benness = line_number / height;
+        var line = make_line(benness);
         lines += line;
     }
 
@@ -20,10 +22,10 @@ $(function() {
         typeSpeed: -100000,
     });
 
-    function make_line() {
+    function make_line(benness) {
         var line = '';
         while (line.length < width) {
-            var next_word = get_next_word();
+            var next_word = get_next_word(benness);
             if (line.length + next_word.length <= width - 1) {
                 line += ' ' + next_word;
             }
@@ -36,7 +38,20 @@ $(function() {
         return line + '\n';
     }
 
-    function get_next_word() {
+    function get_next_word(benness) {
+        if (Math.random() > benness) {
+            return get_next_ipsum_word();
+        }
+        else {
+            return get_next_bensum_word();
+        }
+    }
+
+    function get_next_ipsum_word() {
+        return ipsum[Math.floor(Math.random() * ipsum.length)];
+    }
+
+    function get_next_bensum_word() {
         return bensum[Math.floor(Math.random() * bensum.length)];
     }
 
