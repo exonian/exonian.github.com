@@ -21,7 +21,25 @@ $(function() {
     });
 
     function make_ben() {
-        console.log("Make Ben now");
+        var char_coords = []
+        for (var y = 0; y < height; y++) {
+            for (var x = 0; x < width; x++) {
+                char_coords.push([x,y])
+            }
+        }
+        order = shuffle(char_coords)
+        for (var i = 0; i < order.length; i++) {
+            var x = order[i][0];
+            var y = order[i][1];
+            var index = (y*(width+1))+x; // account for newline chars by adding 1 to width
+            var current_string=$pre.html();
+            if (current_string.charAt(index) == '\n') {
+                continue;
+            }
+            var new_char = ben_ascii[y].charAt(x);
+            var new_string = current_string.substr(0, index) + new_char + current_string.substr(index+new_char.length);
+            $pre.html(new_string);
+        }
     }
 
     function make_line(benness) {
