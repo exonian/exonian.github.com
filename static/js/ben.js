@@ -5,6 +5,7 @@ $(function() {
     console.log('Height = ' + height);
     console.log('Width = ' + width);
 
+    var buffer = []
     var lines = '';
     var line_number = 1;
     while (line_number <= height) {
@@ -19,6 +20,49 @@ $(function() {
         typeSpeed: -100000,
         callback: make_ben
     });
+
+    function make_line(benness) {
+        var line = '';
+        while (line.length < width) {
+            var next_word = get_next_word(benness);
+            if (line.length + next_word.length <= width - 1) {
+                line += ' ' + next_word;
+            }
+            else {
+                while (line.length < width) {
+                    line += ' ';
+                }
+                buffer.unshift(next_word); // if we can't use it, put it back
+            };
+        }
+        return line + '\n';
+    }
+
+    function get_next_word(benness) {
+        if (Math.random() > benness) {
+            return get_next_ipsum_word();
+        }
+        else {
+            return get_next_bensum_word();
+        }
+    }
+
+    function get_next_ipsum_word() {
+        if (lorem_phrases == true) {
+            if (buffer.length == 0) {
+                buffer = ipsum[Math.floor(Math.random() * ipsum.length)].slice(); // slice to copy
+            }
+            return buffer.shift()
+        }
+        else {
+            return ipsum[Math.floor(Math.random() * ipsum.length)];
+        }
+    }
+
+    function get_next_bensum_word() {
+        buffer.shift() // remove the first word from the buffer so we appear to sub it
+        return bensum[Math.floor(Math.random() * bensum.length)];
+    }
 
     function make_ben() {
         var char_coords = []
@@ -53,39 +97,6 @@ $(function() {
 
     function replace_string(new_string) {
         $pre.html(new_string);
-    }
-
-    function make_line(benness) {
-        var line = '';
-        while (line.length < width) {
-            var next_word = get_next_word(benness);
-            if (line.length + next_word.length <= width - 1) {
-                line += ' ' + next_word;
-            }
-            else {
-                while (line.length < width) {
-                    line += ' ';
-                }
-            };
-        }
-        return line + '\n';
-    }
-
-    function get_next_word(benness) {
-        if (Math.random() > benness) {
-            return get_next_ipsum_word();
-        }
-        else {
-            return get_next_bensum_word();
-        }
-    }
-
-    function get_next_ipsum_word() {
-        return ipsum[Math.floor(Math.random() * ipsum.length)];
-    }
-
-    function get_next_bensum_word() {
-        return bensum[Math.floor(Math.random() * bensum.length)];
     }
 });
 
