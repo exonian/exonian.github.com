@@ -1,5 +1,6 @@
 ---
 layout: post
+truncate: yes
 ---
 
 Hitman Blood Money has, as far as I'm aware, been generally seen as the pinacle of the Hitman series. Most people felt it was a massive improvement on what came before, and I've not heard from anyone thinking Absolution bettered it. Now, there's a new Hitman game and, essentially, [Tom Francis][pentadactTwitter] (whose opinion I respect an enormous amount, hence it being the one to set me off) [doesn't prefer it to Blood Money][c&cEp]. This is about why I do.
